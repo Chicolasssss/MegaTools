@@ -1,0 +1,100 @@
+{
+  "password-generator": {
+    "h2": "What is a Random Password Generator?",
+    "p1": "A Random Password Generator is a critical security tool that creates complex, unpredictable combinations of characters, numbers, and symbols. In today's digital landscape, using weak or reused passwords is the primary cause of account breaches.",
+    "h3": "Why You Need a Strong Password",
+    "p2": "Cybercriminals use automated tools to guess millions of passwords per second. A password like 'admin123' can be cracked instantly, while a 16-character string combining mixed case, numbers, and symbols would take trillions of years to decipher. This tool guarantees cryptographically secure generation done entirely on your browser—no data is sent to our servers.",
+    "faq1_q": "Is this password generator safe to use?",
+    "faq1_a": "Yes. The generation happens entirely within your browser using JavaScript's secure randomness APIs. Your passwords are never transmitted over the internet or saved anywhere.",
+    "faq2_q": "How long should my password be?",
+    "faq2_a": "Security experts recommend a minimum of 16 characters for critical accounts like email or banking, and at least 12 characters for general use."
+  },
+  "utm-builder": {
+    "h2": "What is a UTM Builder?",
+    "p1": "A UTM (Urchin Tracking Module) Builder is an essential marketing utility that attaches special tracking tags to your URLs. These tags allow analytics platforms like Google Analytics to accurately identify where your traffic is coming from.",
+    "h3": "Best Practices for UTM Parameters",
+    "p2": "When running digital marketing campaigns across social media, email, and CPC networks, consistency is key. Always use lowercase letters, avoid spaces (use underscores or hyphens), and keep a standardized naming convention so your marketing reports remain clean and actionable.",
+    "faq1_q": "Do UTM parameters affect SEO?",
+    "faq1_a": "No. Search engines ignore UTM parameters when indexing pages. However, it's recommended to use canonical tags on your website to ensure search engines know the original URL.",
+    "faq2_q": "What are the required parameters?",
+    "faq2_a": "Generally, only 'utm_source' is strictly required, but it's highly recommended to use 'utm_medium' and 'utm_campaign' as well for proper attribution."
+  },
+  "text-formatter": {
+    "h2": "What is a Text Formatter?",
+    "p1": "Our Text Formatter is a quick productivity tool designed to fix capitalization errors instantly. Whether you accidentally typed a whole document with Caps Lock on or need to format titles for an essay, this tool does it in one click.",
+    "h3": "Common Formatting Use Cases",
+    "p2": "Content writers, programmers, and students often need to switch text cases. 'Capitalize Words' (Title Case) is perfect for blog post titles and email subject lines, while 'Sentence case' fixes irregular capitalization in long paragraphs, ensuring professional grammar without manual editing.",
+    "faq1_q": "Is there a limit to how much text I can format?",
+    "faq1_a": "No, there is no hard limit. You can paste thousands of words and format them instantly, as the processing uses your device's memory.",
+    "faq2_q": "Does it format HTML or code?",
+    "faq2_a": "This tool treats all input as plain text. If you input HTML, the tags themselves will also be converted to uppercase or lowercase."
+  },
+  "word-counter": {
+    "h2": "What is a Word Counter?",
+    "p1": "A Word Counter is a crucial writing assistant that tracks the length and structure of your documents. It provides real-time metrics on words, characters, and paragraphs, making it indispensable for meeting strict word count requirements.",
+    "h3": "Why Character Counting Matters for SEO and Social Media",
+    "p2": "Platforms like Twitter have strict character limits, while Google search results truncate meta descriptions over 160 characters. Furthermore, SEO specialists rely on word counts to ensure articles have enough depth (typically 1,000+ words) to rank competitively on search engine result pages (SERPs).",
+    "faq1_q": "How is reading time calculated?",
+    "faq1_a": "Reading time is estimated based on the average adult reading speed of 250 words per minute.",
+    "faq2_q": "Does the character count include spaces?",
+    "faq2_a": "Our tool provides both metrics: total characters including spaces, and a separate count excluding spaces."
+  },
+  "qr-generator": {
+    "h2": "What is a QR Code Generator?",
+    "p1": "A QR Code (Quick Response Code) Generator is a utility that transforms URLs, text, or contact information into a scannable 2D barcode. Modern smartphones can read these codes natively through their camera apps.",
+    "h3": "Bridging Offline and Online Marketing",
+    "p2": "QR codes are the perfect bridge between physical print marketing (flyers, menus, business cards) and your digital presence. By generating a QR code that links to a UTM-tagged URL, you can perfectly track the ROI of your offline marketing campaigns in Google Analytics.",
+    "faq1_q": "Do these QR codes expire?",
+    "faq1_a": "No. The QR codes generated here are 'Static' QR codes. The data is encoded directly into the image itself, meaning they will work forever as long as the destination URL remains active.",
+    "faq2_q": "Can I use these for commercial purposes?",
+    "faq2_a": "Yes, our generated QR codes are 100% free for both personal and commercial use with no hidden fees."
+  },
+  "json-formatter": {
+    "h2": "What is a JSON Formatter?",
+    "p1": "A JSON Formatter and Validator is a developer tool used to parse minified or messy JSON string data and render it into a human-readable, beautifully indented tree structure.",
+    "h3": "Essential for API Development",
+    "p2": "When working with RESTful APIs, data payloads are almost always transmitted in JSON format. Developers use this tool to quickly debug API responses, identify syntax errors (like missing commas or unquoted keys), and traverse complex nested objects.",
+    "faq1_q": "Does this tool send my JSON data to a server?",
+    "faq1_a": "Absolutely not. The validation and formatting algorithms run strictly locally in your browser to ensure your proprietary data or API keys remain confidential."
+  },
+  "base64-encoder": {
+    "h2": "What is Base64 Encoding?",
+    "p1": "Base64 is a data encoding scheme that converts binary data (or plain text) into a printable ASCII string format. It is widely used in web development, email protocols, and data storage to ensure that data remains intact without modification during transport.",
+    "h3": "Common Use Cases for Base64",
+    "p2": "Developers frequently use Base64 to embed small images directly into CSS or HTML files (saving HTTP requests), encode JSON Web Tokens (JWTs), or securely pass complex strings in URL parameters without worrying about special character encoding issues.",
+    "faq1_q": "Is Base64 encryption?",
+    "faq1_a": "No. Base64 is strictly an encoding method, not encryption. It provides no cryptographic security and can be instantly decoded by anyone. Never use Base64 to hide sensitive passwords or secrets.",
+    "faq2_q": "Can I decode any Base64 string?",
+    "faq2_a": "Yes, as long as it is valid Base64 and translates back to a readable UTF-8 string format. If it encodes binary data (like an image), the text decoder may show gibberish."
+  },
+  "uuid-generator": {
+    "h2": "What is a UUID (Universally Unique Identifier)?",
+    "p1": "A UUID is a 128-bit label used for information in computer systems. This generator specifically creates Version 4 UUIDs, which are generated using cryptographic pseudo-random number generators, making the chance of a collision (generating the same ID twice) practically zero.",
+    "h3": "Why Developers Use UUIDs",
+    "p2": "Unlike auto-incrementing database IDs (1, 2, 3...), UUIDs are decentralized. You can generate them on the client-side without asking the database, knowing they will be unique. They also prevent users from guessing how many records you have or accessing sequential data.",
+    "faq1_q": "How unique is a Version 4 UUID?",
+    "faq1_a": "Incredibly unique. The number of possible v4 UUIDs is 2^122. If you generated 1 billion UUIDs every second for 85 years, there is only a 50% chance of a single collision.",
+    "faq2_q": "Is it safe to use these UUIDs for primary keys?",
+    "faq2_a": "Yes, UUIDs are commonly used as primary keys in distributed databases, microservices architectures, and modern web applications."
+  },
+  "hash-generator": {
+    "h2": "What is a Hash Generator?",
+    "p1": "A hash generator is a cryptographic tool that converts any given text or data into a fixed-length string of characters, which represents a 'fingerprint' of the original data. Hashes are deterministic, meaning the same input will always produce the exact same output.",
+    "h3": "Common Uses of Hashing",
+    "p2": "Hashes are heavily used in computer science for data integrity verification, password storage, and digital signatures. By hashing a downloaded file and comparing it to the original developer's hash, you can verify the file wasn't tampered with by a malicious third party.",
+    "faq1_q": "Can a hash be decrypted?",
+    "faq1_a": "No, hashing is a one-way cryptographic function. Unlike encryption, you cannot 'decrypt' a hash back into its original text. You can only verify if a given text matches a specific hash.",
+    "faq2_q": "Which hash algorithm is the most secure?",
+    "faq2_a": "Of the ones provided, SHA-512 and SHA-256 are the most secure and are current industry standards. MD5 and SHA-1 are considered cryptographically broken and should only be used for non-security checksums."
+  },
+  "lorem-ipsum": {
+    "h2": "What is Lorem Ipsum?",
+    "p1": "Lorem Ipsum is standard dummy text used in the typesetting, graphic design, and web development industries. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
+    "h3": "Why Designers Use Placeholder Text",
+    "p2": "When building a website or designing a flyer, using real text can distract viewers from the overall visual layout. Lorem Ipsum provides a natural distribution of letters and word lengths, making it look like readable English without carrying any actual meaning.",
+    "faq1_q": "Is the generated text completely random?",
+    "faq1_a": "Yes, our generator mixes standard Latin words in a random order to create unique paragraphs of various lengths, avoiding the repetitive patterns found in older generators.",
+    "faq2_q": "How many paragraphs can I generate?",
+    "faq2_a": "You can instantly generate up to 20 paragraphs of dummy text at once, completely free and directly in your browser."
+  }
+}

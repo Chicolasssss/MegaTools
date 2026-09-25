@@ -5,6 +5,13 @@ import PasswordGenerator from '../../components/tools/PasswordGenerator';
 import UTMBuilder from '../../components/tools/UTMBuilder';
 import TextFormatter from '../../components/tools/TextFormatter';
 import WordCounter from '../../components/tools/WordCounter';
+import QRGenerator from '../../components/tools/QRGenerator';
+import JSONFormatter from '../../components/tools/JSONFormatter';
+import Base64Encoder from '../../components/tools/Base64Encoder';
+import UUIDGenerator from '../../components/tools/UUIDGenerator';
+import HashGenerator from '../../components/tools/HashGenerator';
+import LoremIpsum from '../../components/tools/LoremIpsum';
+import seoDatabase from '../../data/seo.json';
 
 export function getStaticPaths() {
   return tools.map((tool) => ({
@@ -14,6 +21,7 @@ export function getStaticPaths() {
 }
 
 const { tool } = Astro.props;
+const seoData = (seoDatabase as any)[tool.id];
 ---
 
 <Layout 
@@ -54,7 +62,13 @@ const { tool } = Astro.props;
 			{tool.id === 'utm-builder' && <UTMBuilder client:load />}
 			{tool.id === 'text-formatter' && <TextFormatter client:load />}
 			{tool.id === 'word-counter' && <WordCounter client:load />}
-			{!['password-generator', 'utm-builder', 'text-formatter', 'word-counter'].includes(tool.id) && (
+			{tool.id === 'qr-generator' && <QRGenerator client:load />}
+			{tool.id === 'json-formatter' && <JSONFormatter client:load />}
+			{tool.id === 'base64-encoder' && <Base64Encoder client:load />}
+			{tool.id === 'uuid-generator' && <UUIDGenerator client:load />}
+			{tool.id === 'hash-generator' && <HashGenerator client:load />}
+			{tool.id === 'lorem-ipsum' && <LoremIpsum client:load />}
+			{!['password-generator', 'utm-builder', 'text-formatter', 'word-counter', 'qr-generator', 'json-formatter', 'base64-encoder', 'uuid-generator', 'hash-generator', 'lorem-ipsum'].includes(tool.id) && (
 				<div class="text-center py-12">
 					<p class="text-gray-500 font-medium">This tool is currently under development.</p>
 					<a href="/" class="text-blue-600 hover:underline mt-2 inline-block">Return Home</a>
@@ -68,19 +82,36 @@ const { tool } = Astro.props;
 		</div>
 
 		<!-- SEO Article Content -->
-		<article class="prose prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 mt-12">
-			<h2>What is {tool.name}?</h2>
-			<p>This tool allows you to {tool.description.toLowerCase()} quickly, securely, and completely free right from your browser. You don't need to install any software or register an account to use it.</p>
-			
-			<h3>How to use this tool?</h3>
-			<p>Using this tool is extremely simple. Just follow the instructions in the interactive panel above. All processes are performed locally on your device or via secure endpoints to guarantee maximum privacy.</p>
+		{seoData ? (
+			<article class="prose prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 mt-12 bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+				<h2>{seoData.h2}</h2>
+				<p>{seoData.p1}</p>
+				
+				<h3>{seoData.h3}</h3>
+				<p>{seoData.p2}</p>
 
-			<h3>Main Features</h3>
-			<ul>
-				<li><strong>Fast and Free:</strong> No usage limits or hidden subscriptions.</li>
-				<li><strong>Privacy First:</strong> We don't store your sensitive data.</li>
-				<li><strong>Easy to Use:</strong> Clean, modern, and intuitive interface.</li>
-			</ul>
-		</article>
+				<hr class="my-8 border-gray-200 dark:border-gray-800" />
+				
+				<h3>Frequently Asked Questions</h3>
+				<div class="space-y-6 mt-6">
+					<div>
+						<h4 class="font-bold text-gray-900 dark:text-white text-lg m-0">{seoData.faq1_q}</h4>
+						<p class="mt-2 text-gray-600 dark:text-gray-400">{seoData.faq1_a}</p>
+					</div>
+					<div>
+						<h4 class="font-bold text-gray-900 dark:text-white text-lg m-0">{seoData.faq2_q}</h4>
+						<p class="mt-2 text-gray-600 dark:text-gray-400">{seoData.faq2_a}</p>
+					</div>
+				</div>
+			</article>
+		) : (
+			<article class="prose prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 mt-12 bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+				<h2>What is {tool.name}?</h2>
+				<p>This tool allows you to {tool.description.toLowerCase()} quickly, securely, and completely free right from your browser. You don't need to install any software or register an account to use it.</p>
+				
+				<h3>How to use this tool?</h3>
+				<p>Using this tool is extremely simple. Just follow the instructions in the interactive panel above. All processes are performed locally on your device or via secure endpoints to guarantee maximum privacy.</p>
+			</article>
+		)}
 	</div>
 </Layout>
