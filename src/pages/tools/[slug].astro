@@ -11,6 +11,8 @@ import Base64Encoder from '../../components/tools/Base64Encoder';
 import UUIDGenerator from '../../components/tools/UUIDGenerator';
 import HashGenerator from '../../components/tools/HashGenerator';
 import LoremIpsum from '../../components/tools/LoremIpsum';
+import ColorConverter from '../../components/tools/ColorConverter';
+import ImageCompressor from '../../components/tools/ImageCompressor';
 import seoDatabase from '../../data/seo.json';
 
 export function getStaticPaths() {
@@ -68,7 +70,9 @@ const seoData = (seoDatabase as any)[tool.id];
 			{tool.id === 'uuid-generator' && <UUIDGenerator client:load />}
 			{tool.id === 'hash-generator' && <HashGenerator client:load />}
 			{tool.id === 'lorem-ipsum' && <LoremIpsum client:load />}
-			{!['password-generator', 'utm-builder', 'text-formatter', 'word-counter', 'qr-generator', 'json-formatter', 'base64-encoder', 'uuid-generator', 'hash-generator', 'lorem-ipsum'].includes(tool.id) && (
+			{tool.id === 'color-converter' && <ColorConverter client:load />}
+			{tool.id === 'image-compressor' && <ImageCompressor client:load />}
+			{!['password-generator', 'utm-builder', 'text-formatter', 'word-counter', 'qr-generator', 'json-formatter', 'base64-encoder', 'uuid-generator', 'hash-generator', 'lorem-ipsum', 'color-converter', 'image-compressor'].includes(tool.id) && (
 				<div class="text-center py-12">
 					<p class="text-gray-500 font-medium">This tool is currently under development.</p>
 					<a href="/" class="text-blue-600 hover:underline mt-2 inline-block">Return Home</a>

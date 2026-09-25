@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout 
+	title={entry.data.title} 
+	description={entry.data.description}
+>
+	<article class="max-w-3xl mx-auto py-8">
+		<!-- Breadcrumbs -->
+		<nav class="flex text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
+		  <ol class="inline-flex items-center space-x-1 md:space-x-3">
+		    <li class="inline-flex items-center">
+		      <a href="/" class="hover:text-blue-600">Home</a>
+		    </li>
+		    <li>
+		      <div class="flex items-center">
+		        <span class="mx-2 text-gray-300">/</span>
+		        <a href="/blog" class="hover:text-blue-600">Blog</a>
+		      </div>
+		    </li>
+		  </ol>
+		</nav>
+
+		<header class="mb-12 text-center">
+			<div class="flex justify-center gap-2 mb-6">
+				{entry.data.tags.map((tag: string) => (
+					<span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold rounded-full uppercase tracking-wider">{tag}</span>
+				))}
+			</div>
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-gray-900 dark:text-white">{entry.data.title}</h1>
+			<div class="flex justify-center items-center text-gray-500 dark:text-gray-400 gap-4 font-medium">
+				<span>{entry.data.author}</span>
+				<span>&bull;</span>
+				<time datetime={entry.data.pubDate.toISOString()}>
+					{entry.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+				</time>
+			</div>
+		</header>
+
+		<!-- AdSense Banner Top -->
+		<div class="w-full h-24 bg-gray-100 dark:bg-gray-900 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center mb-12 shadow-inner">
+			<span class="text-gray-400 text-sm font-medium tracking-wide">Advertisement Space (Horizontal)</span>
+		</div>
+
+		<div class="prose prose-lg prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600">
+			<Content />
+		</div>
+
+		<!-- AdSense Banner Bottom -->
+		<div class="w-full h-24 bg-gray-100 dark:bg-gray-900 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center mt-16 shadow-inner">
+			<span class="text-gray-400 text-sm font-medium tracking-wide">Advertisement Space (Horizontal)</span>
+		</div>
+	</article>
+</Layout>

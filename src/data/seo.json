@@ -96,5 +96,25 @@
     "faq1_a": "Yes, our generator mixes standard Latin words in a random order to create unique paragraphs of various lengths, avoiding the repetitive patterns found in older generators.",
     "faq2_q": "How many paragraphs can I generate?",
     "faq2_a": "You can instantly generate up to 20 paragraphs of dummy text at once, completely free and directly in your browser."
+  },
+  "color-converter": {
+    "h2": "What is a Color Converter?",
+    "p1": "A color converter is an essential design utility that translates colors between different digital formats such as HEX, RGB, and HSL. Different software and coding languages require different color formats.",
+    "h3": "Why You Need Multiple Color Formats",
+    "p2": "While designers might use HEX codes (#3b82f6) in Figma or Adobe XD, a frontend developer might need RGB for programmatic manipulation or HSL (Hue, Saturation, Lightness) for creating smooth CSS gradients and hover effects.",
+    "faq1_q": "What is HSL?",
+    "faq1_a": "HSL stands for Hue, Saturation, and Lightness. It is often preferred by developers because it is much easier to create lighter or darker variations of a color simply by adjusting the Lightness percentage.",
+    "faq2_q": "Does this tool work offline?",
+    "faq2_a": "Yes! Once the page loads, the conversion algorithms run entirely on your browser using JavaScript."
+  },
+  "image-compressor": {
+    "h2": "What is an Image Compressor?",
+    "p1": "An image compressor reduces the file size of your photos and graphics without significantly degrading their visual quality. It achieves this by stripping out unnecessary metadata and intelligently grouping similar colored pixels.",
+    "h3": "The Importance of Image Compression for SEO",
+    "p2": "Large images are the number one cause of slow-loading websites. Google's Core Web Vitals algorithm heavily penalizes slow pages. By compressing your JPG and PNG files before uploading them, you ensure lightning-fast load times, improving both user experience and your SEO rankings.",
+    "faq1_q": "Are my images uploaded to your servers?",
+    "faq1_a": "No! Our advanced Image Compressor uses the HTML5 Canvas API to process and compress your images entirely inside your web browser. Your sensitive photos never leave your device.",
+    "faq2_q": "Which image formats are supported?",
+    "faq2_a": "You can compress standard web formats including JPG (JPEG), PNG, and WebP."
   }
 }
