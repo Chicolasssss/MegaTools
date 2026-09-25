@@ -26,13 +26,26 @@ const breadcrumbItems = [
 
     <AdSlot variant="top" />
 
-    <div class="text-center mb-10">
-      <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">{title}</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-400">{description}</p>
+    <div class="text-center mb-12 flex flex-col items-center">
+      <span class="px-4 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-full uppercase tracking-wider mb-6 border border-blue-100 dark:border-blue-800/50 shadow-sm flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400"></span>
+        {category}
+      </span>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-gray-900 dark:text-white leading-tight">{title}</h1>
+      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">{description}</p>
     </div>
 
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 md:p-10 shadow-sm mb-12">
-      <slot name="tool" />
+    <div class="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-12 shadow-xl shadow-gray-200/50 dark:shadow-black/20 mb-12 overflow-hidden ring-1 ring-black/5 dark:ring-white/5">
+      <!-- Decorative top gradient bar -->
+      <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600"></div>
+      
+      <!-- Subtle background glow behind the tool -->
+      <div class="absolute -top-32 -right-32 w-96 h-96 bg-blue-500/10 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 w-full max-w-full">
+        <slot name="tool" />
+      </div>
     </div>
 
     <AdSlot variant="mid" />
