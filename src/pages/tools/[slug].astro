@@ -20,6 +20,9 @@ import SlugGenerator from '../../components/tools/SlugGenerator';
 import TimestampConverter from '../../components/tools/TimestampConverter';
 import CidrCalculator from '../../components/tools/CidrCalculator';
 import HttpStatusLookup from '../../components/tools/HttpStatusLookup';
+import YamlConverter from '../../components/tools/YamlConverter';
+import ChmodCalculator from '../../components/tools/ChmodCalculator';
+import RegexTester from '../../components/tools/RegexTester';
 
 export async function getStaticPaths() {
   const toolEntries = await getCollection('tools');
@@ -56,6 +59,9 @@ const { Content } = await render(entry);
 		{entry.id === 'timestamp-converter' && <TimestampConverter client:load />}
 		{entry.id === 'cidr-calculator' && <CidrCalculator client:load />}
 		{entry.id === 'http-status-lookup' && <HttpStatusLookup client:load />}
+		{entry.id === 'yaml-converter' && <YamlConverter client:load />}
+		{entry.id === 'chmod-calculator' && <ChmodCalculator client:load />}
+		{entry.id === 'regex-tester' && <RegexTester client:load />}
 	</Fragment>
 
 	<Fragment slot="content">
