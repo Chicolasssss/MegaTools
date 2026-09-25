@@ -1,0 +1,26 @@
+[
+  {
+    "id": "password-generator",
+    "name": "Generador de Contraseñas",
+    "slug": "generador-contrasenas",
+    "description": "Genera contraseñas seguras y aleatorias con opciones personalizables.",
+    "category": "Seguridad",
+    "icon": "Key"
+  },
+  {
+    "id": "utm-builder",
+    "name": "Constructor de UTM",
+    "slug": "constructor-utm",
+    "description": "Crea enlaces con parámetros UTM para tus campañas de marketing fácilmente.",
+    "category": "Marketing",
+    "icon": "Link"
+  },
+  {
+    "id": "text-formatter",
+    "name": "Formateador de Texto",
+    "slug": "formateador-texto",
+    "description": "Convierte texto a mayúsculas, minúsculas o capitaliza palabras al instante.",
+    "category": "Texto",
+    "icon": "Type"
+  }
+]
