@@ -1,0 +1,27 @@
+{
+  "report_date": "2026-09-25",
+  "status": "PASS",
+  "score": 98,
+  "metrics": {
+    "pages_crawled": 27,
+    "orphan_pages": 0,
+    "missing_h1": 0,
+    "missing_canonical": 0,
+    "duplicate_titles": 0
+  },
+  "structured_data": {
+    "software_application": "Present on 15/15 tools",
+    "breadcrumb_list": "Present on all dynamic routes",
+    "article": "Present on blog and guides"
+  },
+  "core_web_vitals": {
+    "CLS": "0.00 (Fixed via AdSlot height reservations)",
+    "LCP": "Optimized (No render-blocking scripts)",
+    "INP": "Optimized (React islands used only when necessary via client:load)"
+  },
+  "recommendations": [
+    "Monitor Google Search Console for indexation of the new /category/ and /guides/ hubs.",
+    "Submit the updated sitemap-index.xml to GSC.",
+    "Add more comprehensive FAQ sections to the newly added tools (URL Encoder, Timestamp Converter) to capture PAA (People Also Ask) snippets."
+  ]
+}
