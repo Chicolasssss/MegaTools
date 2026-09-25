@@ -29,7 +29,7 @@ const { title, description } = Astro.props;
 		<link rel="canonical" href={Astro.url} />
 	</head>
 	<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col font-sans antialiased">
-		<header class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+		<header class="sticky top-0 z-50 w-full border-b border-gray-200/50 dark:border-gray-800/50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-950/60">
 			<div class="container mx-auto px-4 h-16 flex items-center justify-between">
 				<a href="/" class="flex items-center space-x-2">
 					<span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">MegaTools<span class="text-blue-600">.</span></span>
