@@ -48,32 +48,51 @@ const searchPayload = [...toolsPayload, ...guidesPayload, ...referencesPayload];
 
 <Layout 
 	title="Home" 
-	description="MegaTools Hub - All the web utilities you need in one single place."
+	description="MegaTools Hub - The ultimate suite of professional web utilities for developers, designers, and marketers."
 >
 	<!-- Hero Section -->
-	<section class="py-20 flex flex-col items-center justify-center text-center">
-		<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-gray-900 dark:text-white">
-			Your professional tools,<br/>
-			<span class="text-blue-600">all in one place.</span>
-		</h1>
-		<p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl">
-			Fast, free, and secure. Find the perfect utility for your daily workflow. No sign-ups required.
-		</p>
-		
-		<div class="w-full max-w-3xl relative">
-			<SearchIsland client:load tools={searchPayload} />
+	<section class="relative py-24 flex flex-col items-center justify-center text-center overflow-hidden">
+		<!-- Background Glow -->
+		<div class="absolute inset-0 overflow-hidden pointer-events-none">
+			<div class="absolute -top-[20%] left-[50%] w-[800px] h-[500px] rounded-full bg-blue-500/10 dark:bg-blue-600/20 blur-[120px] -translate-x-1/2"></div>
+		</div>
+
+		<div class="relative z-10">
+			<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-semibold text-sm mb-8 border border-blue-100 dark:border-blue-800/50 shadow-sm">
+				<span class="flex h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse"></span>
+				100% Free & Client-Side Secure
+			</div>
+			
+			<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-gray-900 dark:text-white leading-[1.1]">
+				The ultimate toolkit for <br/>
+				<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">modern professionals.</span>
+			</h1>
+			
+			<p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+				Stop searching for individual, ad-heavy websites. Access premium formatting, conversion, and calculation tools instantly—all running privately in your browser.
+			</p>
+			
+			<div class="w-full max-w-3xl relative mx-auto">
+				<SearchIsland client:load tools={searchPayload} />
+			</div>
 		</div>
 	</section>
 
 	<!-- AdSense Banner -->
-	<AdSlot variant="content" />
+	<div class="max-w-4xl mx-auto my-8">
+		<AdSlot variant="content" />
+	</div>
 
 	<!-- Categories Grid -->
-	<section id="categories" class="mb-20">
-		<h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">Browse by Category</h2>
+	<section id="categories" class="mb-24 relative z-10">
+		<div class="flex items-center justify-between mb-10">
+			<h2 class="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Explore Categories</h2>
+			<div class="h-px bg-gray-200 dark:bg-gray-800 flex-grow ml-8 hidden md:block"></div>
+		</div>
 		<div class="flex flex-wrap gap-4">
 			{categories.map((category) => (
-				<a href={`/category/${category.id}`} class="px-6 py-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 transition-all font-semibold text-gray-800 dark:text-gray-200">
+				<a href={`/category/${category.id}`} class="group px-6 py-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm hover:shadow-md hover:border-blue-500/50 transition-all font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-3">
+					<div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700 group-hover:bg-blue-500 transition-colors"></div>
 					{category.data.name}
 				</a>
 			))}
@@ -81,24 +100,34 @@ const searchPayload = [...toolsPayload, ...guidesPayload, ...referencesPayload];
 	</section>
 
 	<!-- Tools Grid -->
-	<section id="tools" class="mb-24">
-		<h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">Popular Tools</h2>
+	<section id="tools" class="mb-24 relative z-10">
+		<div class="flex items-center justify-between mb-10">
+			<h2 class="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Most Popular Tools</h2>
+			<div class="h-px bg-gray-200 dark:bg-gray-800 flex-grow ml-8 hidden md:block"></div>
+		</div>
 		
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 			{toolsPayload.map((tool) => {
 				const IconComponent = Icons[tool.icon as keyof typeof Icons] as any;
 				
 				return (
-				<a href={`/tools/${tool.slug}`} class="group flex flex-col p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200">
-					<div class="w-12 h-12 bg-gray-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center mb-5 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-colors">
-						{IconComponent && <IconComponent size={24} strokeWidth={1.5} />}
-					</div>
-					<h3 class="text-lg font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{tool.name}</h3>
-					<p class="text-gray-600 dark:text-gray-400 text-sm flex-grow mb-4 leading-relaxed">{tool.description}</p>
+				<a href={`/tools/${tool.slug}`} class="group relative flex flex-col p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+					<div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-900/10 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 					
-					<div class="pt-4 border-t border-gray-100 dark:border-gray-800 flex justify-between items-center text-xs font-semibold uppercase tracking-wider">
-						<span class="text-gray-400">{tool.category}</span>
-						<span class="text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform">Use Tool &rarr;</span>
+					<div class="relative z-10 flex flex-col h-full">
+						<div class="w-14 h-14 bg-gray-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-transform duration-300 border border-gray-100 dark:border-gray-700 group-hover:border-blue-200 dark:group-hover:border-blue-800/50">
+							{IconComponent && <IconComponent size={28} strokeWidth={1.5} />}
+						</div>
+						
+						<h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{tool.name}</h3>
+						<p class="text-gray-600 dark:text-gray-400 text-sm flex-grow mb-6 leading-relaxed line-clamp-3">{tool.description}</p>
+						
+						<div class="pt-5 border-t border-gray-100 dark:border-gray-800 flex justify-between items-center mt-auto">
+							<span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">{tool.category}</span>
+							<span class="text-blue-600 dark:text-blue-400 font-semibold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+								Open <Icons.ArrowRight size={16} />
+							</span>
+						</div>
 					</div>
 				</a>
 			)})}

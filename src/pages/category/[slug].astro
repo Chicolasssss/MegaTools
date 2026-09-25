@@ -40,19 +40,24 @@ const breadcrumbs = [
 		<AdSlot variant="top" />
 
 		<!-- Tools Grid for this Category -->
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
 			{categoryTools.map((tool) => {
 				const IconComponent = Icons[tool.data.icon as keyof typeof Icons] as any;
 				return (
-				<a href={`/tools/${tool.id}`} class="group flex flex-col p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200">
-					<div class="w-12 h-12 bg-gray-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center mb-5 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-colors">
-						{IconComponent && <IconComponent size={24} strokeWidth={1.5} />}
-					</div>
-					<h3 class="text-lg font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{tool.data.name}</h3>
-					<p class="text-gray-600 dark:text-gray-400 text-sm flex-grow mb-4 leading-relaxed">{tool.data.description}</p>
-					
-					<div class="pt-4 border-t border-gray-100 dark:border-gray-800 flex justify-end items-center text-xs font-semibold uppercase tracking-wider">
-						<span class="text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform">Use Tool &rarr;</span>
+				<a href={`/tools/${tool.id}`} class="group relative flex flex-col p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+					<div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-900/10 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+					<div class="relative z-10 flex flex-col h-full">
+						<div class="w-14 h-14 bg-gray-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-transform duration-300 border border-gray-100 dark:border-gray-700 group-hover:border-blue-200 dark:group-hover:border-blue-800/50">
+							{IconComponent && <IconComponent size={28} strokeWidth={1.5} />}
+						</div>
+						<h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{tool.data.name}</h3>
+						<p class="text-gray-600 dark:text-gray-400 text-sm flex-grow mb-6 leading-relaxed line-clamp-3">{tool.data.description}</p>
+						
+						<div class="pt-5 border-t border-gray-100 dark:border-gray-800 flex justify-end items-center mt-auto">
+							<span class="text-blue-600 dark:text-blue-400 font-semibold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+								Open <Icons.ArrowRight size={16} />
+							</span>
+						</div>
 					</div>
 				</a>
 			)})}
@@ -61,7 +66,7 @@ const breadcrumbs = [
 		<AdSlot variant="mid" />
 
 		<!-- SEO Content Block -->
-		<article class="prose prose-lg prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 mt-12 bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+		<article class="prose prose-lg prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h3:text-2xl prose-a:text-blue-600 hover:prose-a:text-blue-500 mt-12 bg-white dark:bg-gray-900 p-8 md:p-12 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm">
 			<Content />
 		</article>
 	</div>
