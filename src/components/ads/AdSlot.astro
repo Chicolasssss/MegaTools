@@ -1,0 +1,40 @@
+---
+export interface Props {
+  variant?: 'top' | 'content' | 'mid' | 'bottom' | 'sidebar';
+  className?: string;
+}
+
+const { variant = 'content', className = '' } = Astro.props;
+
+// Toggle this via env or config in production
+const ADSENSE_ENABLED = false; 
+
+const heights = {
+  top: 'h-24',
+  content: 'h-32',
+  mid: 'h-32',
+  bottom: 'h-24',
+  sidebar: 'h-64 lg:h-96 w-full'
+};
+
+const heightClass = heights[variant];
+---
+
+{ADSENSE_ENABLED ? (
+  <div class={`w-full flex justify-center my-8 ${className}`}>
+    <!-- Insert real AdSense code here later -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script is:inline>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+) : (
+  <div class={`w-full ${heightClass} bg-gray-100 dark:bg-gray-800/50 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center my-8 shadow-inner ${className}`}>
+    <span class="text-gray-400 text-xs sm:text-sm font-medium tracking-wide">AdSense Placeholder ({variant})</span>
+  </div>
+)}

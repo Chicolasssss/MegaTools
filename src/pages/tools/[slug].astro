@@ -1,6 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import tools from '../../data/tools.json';
+import { getCollection, render } from 'astro:content';
+import ToolLayout from '../../layouts/ToolLayout.astro';
+
+// Tool Components
 import PasswordGenerator from '../../components/tools/PasswordGenerator';
 import UTMBuilder from '../../components/tools/UTMBuilder';
 import TextFormatter from '../../components/tools/TextFormatter';
@@ -13,109 +15,40 @@ import HashGenerator from '../../components/tools/HashGenerator';
 import LoremIpsum from '../../components/tools/LoremIpsum';
 import ColorConverter from '../../components/tools/ColorConverter';
 import ImageCompressor from '../../components/tools/ImageCompressor';
-import seoDatabase from '../../data/seo.json';
 
-export function getStaticPaths() {
-  return tools.map((tool) => ({
-    params: { slug: tool.slug },
-    props: { tool },
+export async function getStaticPaths() {
+  const toolEntries = await getCollection('tools');
+  return toolEntries.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
   }));
 }
 
-const { tool } = Astro.props;
-const seoData = (seoDatabase as any)[tool.id];
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 ---
 
-<Layout 
-	title={tool.name} 
-	description={tool.description}
+<ToolLayout 
+	title={entry.data.seoTitle || entry.data.name} 
+	description={entry.data.metaDescription || entry.data.description}
+	category={entry.data.category}
+	slug={entry.id}
 >
-	<div class="max-w-4xl mx-auto">
-		<!-- Breadcrumbs -->
-		<nav class="flex text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
-		  <ol class="inline-flex items-center space-x-1 md:space-x-3">
-		    <li class="inline-flex items-center">
-		      <a href="/" class="hover:text-blue-600">Home</a>
-		    </li>
-		    <li>
-		      <div class="flex items-center">
-		        <span class="mx-2 text-gray-300">/</span>
-		        <span class="text-gray-400">{tool.category}</span>
-		      </div>
-		    </li>
-		    <li aria-current="page">
-		      <div class="flex items-center">
-		        <span class="mx-2 text-gray-300">/</span>
-		        <span class="text-gray-900 dark:text-white font-medium">{tool.name}</span>
-		      </div>
-		    </li>
-		  </ol>
-		</nav>
+	<Fragment slot="tool">
+		{entry.id === 'password-generator' && <PasswordGenerator client:load />}
+		{entry.id === 'utm-builder' && <UTMBuilder client:load />}
+		{entry.id === 'text-formatter' && <TextFormatter client:load />}
+		{entry.id === 'word-counter' && <WordCounter client:load />}
+		{entry.id === 'qr-generator' && <QRGenerator client:load />}
+		{entry.id === 'json-formatter' && <JSONFormatter client:load />}
+		{entry.id === 'base64-encoder' && <Base64Encoder client:load />}
+		{entry.id === 'uuid-generator' && <UUIDGenerator client:load />}
+		{entry.id === 'hash-generator' && <HashGenerator client:load />}
+		{entry.id === 'lorem-ipsum' && <LoremIpsum client:load />}
+		{entry.id === 'color-converter' && <ColorConverter client:load />}
+		{entry.id === 'image-compressor' && <ImageCompressor client:load />}
+	</Fragment>
 
-		<!-- Tool Header (SEO H1) -->
-		<div class="text-center mb-10">
-			<h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">{tool.name}</h1>
-			<p class="text-lg text-gray-600 dark:text-gray-400">{tool.description}</p>
-		</div>
-
-		<!-- Interactive Tool (React Island) -->
-		<div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 md:p-10 shadow-sm mb-16">
-			{tool.id === 'password-generator' && <PasswordGenerator client:load />}
-			{tool.id === 'utm-builder' && <UTMBuilder client:load />}
-			{tool.id === 'text-formatter' && <TextFormatter client:load />}
-			{tool.id === 'word-counter' && <WordCounter client:load />}
-			{tool.id === 'qr-generator' && <QRGenerator client:load />}
-			{tool.id === 'json-formatter' && <JSONFormatter client:load />}
-			{tool.id === 'base64-encoder' && <Base64Encoder client:load />}
-			{tool.id === 'uuid-generator' && <UUIDGenerator client:load />}
-			{tool.id === 'hash-generator' && <HashGenerator client:load />}
-			{tool.id === 'lorem-ipsum' && <LoremIpsum client:load />}
-			{tool.id === 'color-converter' && <ColorConverter client:load />}
-			{tool.id === 'image-compressor' && <ImageCompressor client:load />}
-			{!['password-generator', 'utm-builder', 'text-formatter', 'word-counter', 'qr-generator', 'json-formatter', 'base64-encoder', 'uuid-generator', 'hash-generator', 'lorem-ipsum', 'color-converter', 'image-compressor'].includes(tool.id) && (
-				<div class="text-center py-12">
-					<p class="text-gray-500 font-medium">This tool is currently under development.</p>
-					<a href="/" class="text-blue-600 hover:underline mt-2 inline-block">Return Home</a>
-				</div>
-			)}
-		</div>
-
-		<!-- AdSense Banner -->
-		<div class="w-full h-24 bg-gray-100 dark:bg-gray-900 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center mb-16 shadow-inner">
-			<span class="text-gray-400 text-sm font-medium tracking-wide">Advertisement Space (Horizontal)</span>
-		</div>
-
-		<!-- SEO Article Content -->
-		{seoData ? (
-			<article class="prose prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 mt-12 bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
-				<h2>{seoData.h2}</h2>
-				<p>{seoData.p1}</p>
-				
-				<h3>{seoData.h3}</h3>
-				<p>{seoData.p2}</p>
-
-				<hr class="my-8 border-gray-200 dark:border-gray-800" />
-				
-				<h3>Frequently Asked Questions</h3>
-				<div class="space-y-6 mt-6">
-					<div>
-						<h4 class="font-bold text-gray-900 dark:text-white text-lg m-0">{seoData.faq1_q}</h4>
-						<p class="mt-2 text-gray-600 dark:text-gray-400">{seoData.faq1_a}</p>
-					</div>
-					<div>
-						<h4 class="font-bold text-gray-900 dark:text-white text-lg m-0">{seoData.faq2_q}</h4>
-						<p class="mt-2 text-gray-600 dark:text-gray-400">{seoData.faq2_a}</p>
-					</div>
-				</div>
-			</article>
-		) : (
-			<article class="prose prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 mt-12 bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
-				<h2>What is {tool.name}?</h2>
-				<p>This tool allows you to {tool.description.toLowerCase()} quickly, securely, and completely free right from your browser. You don't need to install any software or register an account to use it.</p>
-				
-				<h3>How to use this tool?</h3>
-				<p>Using this tool is extremely simple. Just follow the instructions in the interactive panel above. All processes are performed locally on your device or via secure endpoints to guarantee maximum privacy.</p>
-			</article>
-		)}
-	</div>
-</Layout>
+	<Fragment slot="content">
+		<Content />
+	</Fragment>
+</ToolLayout>

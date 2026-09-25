@@ -1,0 +1,40 @@
+---
+export interface Props {
+  type: 'SoftwareApplication' | 'WebSite' | 'Article';
+  data: any;
+}
+
+const { type, data } = Astro.props;
+
+let schema: any = {
+  "@context": "https://schema.org",
+  "@type": type,
+};
+
+if (type === 'SoftwareApplication') {
+  schema = {
+    ...schema,
+    name: data.name,
+    description: data.description,
+    applicationCategory: data.category || 'UtilitiesApplication',
+    operatingSystem: 'Any',
+    offers: {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+} else if (type === 'Article') {
+    schema = {
+        ...schema,
+        headline: data.title,
+        description: data.description,
+        author: {
+            "@type": "Organization",
+            "name": data.author || "MegaTools Team"
+        },
+        datePublished: data.pubDate
+    }
+}
+---
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

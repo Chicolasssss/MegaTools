@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import * as Icons from 'lucide-react';
+
+export interface Props {
+  currentToolId: string;
+  category: string;
+}
+
+const { currentToolId, category } = Astro.props;
+
+const allTools = await getCollection('tools');
+// Filter tools by the same category, excluding the current tool.
+// Limit to 4 tools.
+const relatedTools = allTools
+  .filter(tool => tool.data.category === category && tool.id !== currentToolId)
+  .slice(0, 4);
+
+if (relatedTools.length === 0) {
+  // If no tools in the same category, just show some random tools.
+  allTools.filter(tool => tool.id !== currentToolId).slice(0, 4).forEach(t => relatedTools.push(t));
+}
+---
+
+<div class="mt-16">
+  <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Related Tools</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {relatedTools.map((tool) => {
+      const IconComponent = Icons[tool.data.icon as keyof typeof Icons];
+      return (
+        <a href={`/tools/${tool.id}`} class="group flex flex-col p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="text-blue-600 dark:text-blue-400">
+              {IconComponent && <IconComponent size={20} strokeWidth={2} />}
+            </div>
+            <h4 class="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">{tool.data.name}</h4>
+          </div>
+          <p class="text-gray-500 dark:text-gray-400 text-xs line-clamp-2">{tool.data.description}</p>
+        </a>
+      )
+    })}
+  </div>
+</div>

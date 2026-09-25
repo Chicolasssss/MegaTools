@@ -1,0 +1,68 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import AdSlot from '../../components/ads/AdSlot.astro';
+import * as Icons from 'lucide-react';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  return categories.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Get all tools for this category
+const allTools = await getCollection('tools');
+const categoryTools = allTools.filter(tool => tool.data.category.toLowerCase() === entry.id.toLowerCase() || tool.data.category === entry.data.name);
+
+const breadcrumbs = [
+  { name: 'Categories', url: '/#categories' },
+  { name: entry.data.name }
+];
+---
+
+<Layout 
+	title={entry.data.seoTitle || entry.data.name} 
+	description={entry.data.metaDescription || entry.data.description}
+>
+	<div class="max-w-6xl mx-auto py-8">
+		<Breadcrumbs items={breadcrumbs} />
+
+		<header class="text-center mb-16">
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-gray-900 dark:text-white">{entry.data.name}</h1>
+			<p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">{entry.data.description}</p>
+		</header>
+
+		<AdSlot variant="top" />
+
+		<!-- Tools Grid for this Category -->
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+			{categoryTools.map((tool) => {
+				const IconComponent = Icons[tool.data.icon as keyof typeof Icons];
+				return (
+				<a href={`/tools/${tool.id}`} class="group flex flex-col p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200">
+					<div class="w-12 h-12 bg-gray-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center mb-5 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-colors">
+						{IconComponent && <IconComponent size={24} strokeWidth={1.5} />}
+					</div>
+					<h3 class="text-lg font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{tool.data.name}</h3>
+					<p class="text-gray-600 dark:text-gray-400 text-sm flex-grow mb-4 leading-relaxed">{tool.data.description}</p>
+					
+					<div class="pt-4 border-t border-gray-100 dark:border-gray-800 flex justify-end items-center text-xs font-semibold uppercase tracking-wider">
+						<span class="text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform">Use Tool &rarr;</span>
+					</div>
+				</a>
+			)})}
+		</div>
+
+		<AdSlot variant="mid" />
+
+		<!-- SEO Content Block -->
+		<article class="prose prose-lg prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-blue-600 mt-12 bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+			<Content />
+		</article>
+	</div>
+</Layout>

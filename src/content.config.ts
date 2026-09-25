@@ -12,6 +12,30 @@ const blogCollection = defineCollection({
   })
 });
 
+const toolsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/tools" }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    category: z.string(),
+    icon: z.string(),
+    seoTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+  })
+});
+
+const categoriesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/categories" }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    seoTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+  })
+});
+
 export const collections = {
   'blog': blogCollection,
+  'tools': toolsCollection,
+  'categories': categoriesCollection,
 };

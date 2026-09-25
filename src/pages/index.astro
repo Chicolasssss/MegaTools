@@ -1,8 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import tools from '../data/tools.json';
+import { getCollection } from 'astro:content';
 import { SearchIsland } from '../components/SearchIsland';
+import AdSlot from '../components/ads/AdSlot.astro';
 import * as Icons from 'lucide-react';
+
+const toolsCollection = await getCollection('tools');
+const categories = await getCollection('categories');
+const tools = toolsCollection.map(tool => ({
+  id: tool.id,
+  name: tool.data.name,
+  description: tool.data.description,
+  category: tool.data.category,
+  icon: tool.data.icon,
+  slug: tool.id
+}));
 ---
 
 <Layout 
@@ -25,13 +37,23 @@ import * as Icons from 'lucide-react';
 	</section>
 
 	<!-- AdSense Banner -->
-	<div class="w-full h-24 bg-gray-100 dark:bg-gray-900 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl flex items-center justify-center mb-16 shadow-inner">
-		<span class="text-gray-400 text-sm font-medium tracking-wide">Advertisement Space (728x90)</span>
-	</div>
+	<AdSlot variant="content" />
+
+	<!-- Categories Grid -->
+	<section id="categories" class="mb-20">
+		<h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">Browse by Category</h2>
+		<div class="flex flex-wrap gap-4">
+			{categories.map((category) => (
+				<a href={`/category/${category.id}`} class="px-6 py-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 transition-all font-semibold text-gray-800 dark:text-gray-200">
+					{category.data.name}
+				</a>
+			))}
+		</div>
+	</section>
 
 	<!-- Tools Grid -->
-	<section id="categories" class="mb-24">
-		<h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">All Tools</h2>
+	<section id="tools" class="mb-24">
+		<h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">Popular Tools</h2>
 		
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 			{tools.map((tool) => {

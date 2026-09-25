@@ -1,0 +1,53 @@
+---
+export interface BreadcrumbItem {
+  name: string;
+  url?: string;
+}
+
+export interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="flex text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
+  <ol class="inline-flex items-center space-x-1 md:space-x-3">
+    <li class="inline-flex items-center">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+    </li>
+    
+    {items.map((item, index) => (
+      <li aria-current={index === items.length - 1 ? 'page' : undefined}>
+        <div class="flex items-center">
+          <span class="mx-2 text-gray-300 dark:text-gray-600">/</span>
+          {item.url ? (
+            <a href={item.url} class="hover:text-blue-600 transition-colors">{item.name}</a>
+          ) : (
+            <span class="text-gray-900 dark:text-gray-100 font-medium">{item.name}</span>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<!-- JSON-LD BreadcrumbList Schema -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": Astro.site?.toString() || "https://megatools-hub.vercel.app/"
+    },
+    ...items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 2,
+      "name": item.name,
+      "item": item.url ? new URL(item.url, Astro.site || "https://megatools-hub.vercel.app/").toString() : undefined
+    }))
+  ]
+})} />
