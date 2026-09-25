@@ -22,5 +22,13 @@
     "description": "Convierte texto a mayúsculas, minúsculas o capitaliza palabras al instante.",
     "category": "Texto",
     "icon": "Type"
+  },
+  {
+    "id": "word-counter",
+    "name": "Contador de Palabras",
+    "slug": "contador-palabras",
+    "description": "Cuenta palabras, caracteres, párrafos y tiempo de lectura de cualquier texto en tiempo real.",
+    "category": "Texto",
+    "icon": "FileText"
   }
 ]
