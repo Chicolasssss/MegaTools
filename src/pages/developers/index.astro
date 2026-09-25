@@ -88,7 +88,7 @@ const searchPayload = [...devTools, ...guidesPayload, ...referencesPayload];
             <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Popular Utilities</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {devTools.map((tool) => {
-                const IconComponent = Icons[tool.icon as keyof typeof Icons];
+                const IconComponent = Icons[tool.icon as keyof typeof Icons] as any;
                 return (
                     <a href={`/tools/${tool.slug}`} class="group flex flex-col p-5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200">
                     <div class="flex items-center gap-3 mb-2">

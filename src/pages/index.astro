@@ -86,7 +86,7 @@ const searchPayload = [...toolsPayload, ...guidesPayload, ...referencesPayload];
 		
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 			{toolsPayload.map((tool) => {
-				const IconComponent = Icons[tool.icon as keyof typeof Icons];
+				const IconComponent = Icons[tool.icon as keyof typeof Icons] as any;
 				
 				return (
 				<a href={`/tools/${tool.slug}`} class="group flex flex-col p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200">

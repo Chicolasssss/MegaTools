@@ -26,7 +26,7 @@ if (relatedTools.length === 0) {
   <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Related Tools</h3>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     {relatedTools.map((tool) => {
-      const IconComponent = Icons[tool.data.icon as keyof typeof Icons];
+      const IconComponent = Icons[tool.data.icon as keyof typeof Icons] as any;
       return (
         <a href={`/tools/${tool.id}`} class="group flex flex-col p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200">
           <div class="flex items-center gap-3 mb-2">
