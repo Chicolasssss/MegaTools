@@ -34,8 +34,20 @@ const categoriesCollection = defineCollection({
   })
 });
 
+const guidesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/guides" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),
+    pubDate: z.date(),
+    author: z.string().default('MegaTools Team')
+  })
+});
+
 export const collections = {
   'blog': blogCollection,
   'tools': toolsCollection,
   'categories': categoriesCollection,
+  'guides': guidesCollection,
 };

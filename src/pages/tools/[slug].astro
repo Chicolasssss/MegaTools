@@ -15,6 +15,9 @@ import HashGenerator from '../../components/tools/HashGenerator';
 import LoremIpsum from '../../components/tools/LoremIpsum';
 import ColorConverter from '../../components/tools/ColorConverter';
 import ImageCompressor from '../../components/tools/ImageCompressor';
+import UrlEncoder from '../../components/tools/UrlEncoder';
+import SlugGenerator from '../../components/tools/SlugGenerator';
+import TimestampConverter from '../../components/tools/TimestampConverter';
 
 export async function getStaticPaths() {
   const toolEntries = await getCollection('tools');
@@ -46,6 +49,9 @@ const { Content } = await render(entry);
 		{entry.id === 'lorem-ipsum' && <LoremIpsum client:load />}
 		{entry.id === 'color-converter' && <ColorConverter client:load />}
 		{entry.id === 'image-compressor' && <ImageCompressor client:load />}
+		{entry.id === 'url-encoder' && <UrlEncoder client:load />}
+		{entry.id === 'slug-generator' && <SlugGenerator client:load />}
+		{entry.id === 'timestamp-converter' && <TimestampConverter client:load />}
 	</Fragment>
 
 	<Fragment slot="content">
