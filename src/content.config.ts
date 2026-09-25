@@ -45,9 +45,19 @@ const guidesCollection = defineCollection({
   })
 });
 
+const referencesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/references" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),
+  })
+});
+
 export const collections = {
   'blog': blogCollection,
   'tools': toolsCollection,
   'categories': categoriesCollection,
   'guides': guidesCollection,
+  'references': referencesCollection,
 };

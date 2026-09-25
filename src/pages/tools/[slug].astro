@@ -18,6 +18,8 @@ import ImageCompressor from '../../components/tools/ImageCompressor';
 import UrlEncoder from '../../components/tools/UrlEncoder';
 import SlugGenerator from '../../components/tools/SlugGenerator';
 import TimestampConverter from '../../components/tools/TimestampConverter';
+import CidrCalculator from '../../components/tools/CidrCalculator';
+import HttpStatusLookup from '../../components/tools/HttpStatusLookup';
 
 export async function getStaticPaths() {
   const toolEntries = await getCollection('tools');
@@ -52,6 +54,8 @@ const { Content } = await render(entry);
 		{entry.id === 'url-encoder' && <UrlEncoder client:load />}
 		{entry.id === 'slug-generator' && <SlugGenerator client:load />}
 		{entry.id === 'timestamp-converter' && <TimestampConverter client:load />}
+		{entry.id === 'cidr-calculator' && <CidrCalculator client:load />}
+		{entry.id === 'http-status-lookup' && <HttpStatusLookup client:load />}
 	</Fragment>
 
 	<Fragment slot="content">

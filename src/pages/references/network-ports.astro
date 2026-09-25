@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import ports from '../../data/networking/ports.json';
+import AdSlot from '../../components/ads/AdSlot.astro';
+
+const breadcrumbs = [
+  { name: 'Developer Hub', url: '/developers' },
+  { name: 'References', url: '/#categories' },
+  { name: 'Network Ports Database' }
+];
+---
+
+<Layout 
+	title="Network Ports Database Reference" 
+	description="Searchable database of common TCP/UDP network ports and their associated services for system administrators and network engineers."
+>
+	<div class="max-w-4xl mx-auto py-8">
+        <Breadcrumbs items={breadcrumbs} />
+
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight text-gray-900 dark:text-white">Network Ports Reference</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-400">
+                A comprehensive database of the most common standard TCP and UDP ports used in computer networking.
+            </p>
+        </div>
+
+        <AdSlot variant="top" />
+
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden mb-12">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800/80 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 font-bold">Port</th>
+                            <th scope="col" class="px-6 py-4 font-bold">Protocol</th>
+                            <th scope="col" class="px-6 py-4 font-bold">Service</th>
+                            <th scope="col" class="px-6 py-4 font-bold">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {ports.map((p) => (
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                                <td class="px-6 py-4 font-mono font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                                    {p.port}
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-gray-600 dark:text-gray-300">
+                                    {p.protocol}
+                                </td>
+                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                    {p.service}
+                                </td>
+                                <td class="px-6 py-4 text-gray-600 dark:text-gray-400">
+                                    {p.description}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <AdSlot variant="bottom" />
+    </div>
+</Layout>

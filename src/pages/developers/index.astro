@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { SearchIsland } from '../../components/SearchIsland';
+import * as Icons from 'lucide-react';
+import AdSlot from '../../components/ads/AdSlot.astro';
+
+// We want to fetch tools specifically related to developers
+const toolsCollection = await getCollection('tools');
+const devCategories = ['Developer', 'Networking', 'Security', 'Text'];
+const devTools = toolsCollection.filter(tool => devCategories.includes(tool.data.category)).map(t => ({
+  id: t.id,
+  name: t.data.name,
+  description: t.data.description,
+  category: t.data.category,
+  icon: t.data.icon,
+  slug: t.id
+}));
+
+const references = [
+    { title: "HTTP Status Codes", url: "/tools/http-status-lookup", desc: "Lookup HTTP codes" },
+    { title: "Network Ports", url: "/references/network-ports", desc: "Database of standard ports" },
+    { title: "MIME Types", url: "/references/mime-types", desc: "Lookup file extensions" }
+];
+---
+
+<Layout 
+	title="Developer & Networking Hub" 
+	description="Fast, private online tools for developers, network engineers, and IT professionals."
+>
+	<div class="max-w-6xl mx-auto">
+        <header class="py-16 text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight text-gray-900 dark:text-white">Developer Hub</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10">
+                Fast, private online tools for developers, network engineers and IT professionals. 100% Client-side.
+            </p>
+            
+            <div class="max-w-2xl mx-auto relative mb-12">
+                <SearchIsland client:load tools={devTools} />
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="/category/developer" class="px-5 py-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 rounded-full font-medium transition-colors border border-gray-200 dark:border-gray-700">Programming</a>
+                <a href="/category/networking" class="px-5 py-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 rounded-full font-medium transition-colors border border-gray-200 dark:border-gray-700">Networking</a>
+                <a href="/category/security" class="px-5 py-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 rounded-full font-medium transition-colors border border-gray-200 dark:border-gray-700">Security</a>
+                <a href="/guides" class="px-5 py-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 rounded-full font-medium transition-colors border border-gray-200 dark:border-gray-700">Guides</a>
+            </div>
+        </header>
+
+        <AdSlot variant="content" />
+
+        <!-- Reference Tables -->
+        <section class="mb-20">
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Developer References</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {references.map(ref => (
+                    <a href={ref.url} class="p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl hover:border-blue-500 transition-colors shadow-sm">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{ref.title}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">{ref.desc}</p>
+                    </a>
+                ))}
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Popular Utilities</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {devTools.map((tool) => {
+                const IconComponent = Icons[tool.icon as keyof typeof Icons];
+                return (
+                    <a href={`/tools/${tool.slug}`} class="group flex flex-col p-5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:shadow-md hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="text-blue-600 dark:text-blue-400">
+                        {IconComponent && <IconComponent size={20} strokeWidth={2} />}
+                        </div>
+                        <h4 class="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">{tool.name}</h4>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs line-clamp-2">{tool.description}</p>
+                    </a>
+                )
+                })}
+            </div>
+        </section>
+    </div>
+</Layout>

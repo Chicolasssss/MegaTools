@@ -1,0 +1,15 @@
+[
+  { "port": 20, "protocol": "TCP", "service": "FTP (Data)", "description": "File Transfer Protocol (Data transfer)" },
+  { "port": 21, "protocol": "TCP", "service": "FTP (Control)", "description": "File Transfer Protocol (Control connection)" },
+  { "port": 22, "protocol": "TCP", "service": "SSH", "description": "Secure Shell, secure logins, file transfers (scp, sftp) and port forwarding" },
+  { "port": 25, "protocol": "TCP", "service": "SMTP", "description": "Simple Mail Transfer Protocol, used for email routing between mail servers" },
+  { "port": 53, "protocol": "TCP/UDP", "service": "DNS", "description": "Domain Name System, resolves hostnames to IP addresses" },
+  { "port": 80, "protocol": "TCP", "service": "HTTP", "description": "Hypertext Transfer Protocol, unencrypted web traffic" },
+  { "port": 110, "protocol": "TCP", "service": "POP3", "description": "Post Office Protocol v3, used for retrieving email" },
+  { "port": 143, "protocol": "TCP", "service": "IMAP", "description": "Internet Message Access Protocol, used for retrieving email" },
+  { "port": 443, "protocol": "TCP", "service": "HTTPS", "description": "Hypertext Transfer Protocol Secure, encrypted web traffic" },
+  { "port": 3306, "protocol": "TCP", "service": "MySQL", "description": "MySQL Database system" },
+  { "port": 5432, "protocol": "TCP", "service": "PostgreSQL", "description": "PostgreSQL Database system" },
+  { "port": 6379, "protocol": "TCP", "service": "Redis", "description": "Redis key-value store" },
+  { "port": 27017, "protocol": "TCP", "service": "MongoDB", "description": "MongoDB Database system" }
+]
