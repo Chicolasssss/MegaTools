@@ -7,14 +7,43 @@ import * as Icons from 'lucide-react';
 
 const toolsCollection = await getCollection('tools');
 const categories = await getCollection('categories');
-const tools = toolsCollection.map(tool => ({
+const guidesCollection = await getCollection('guides');
+
+const toolsPayload = toolsCollection.map(tool => ({
   id: tool.id,
   name: tool.data.name,
   description: tool.data.description,
   category: tool.data.category,
   icon: tool.data.icon,
-  slug: tool.id
+  slug: tool.id,
+  type: 'tool' as const
 }));
+
+const guidesPayload = guidesCollection.map(g => ({
+  id: `guide-${g.id}`,
+  name: g.data.title,
+  description: g.data.description,
+  category: g.data.category,
+  slug: g.id,
+  type: 'guide' as const
+}));
+
+const references = [
+    { title: "HTTP Status Codes", url: "/tools/http-status-lookup", desc: "Lookup HTTP codes" },
+    { title: "Network Ports", url: "/references/network-ports", desc: "Database of standard ports" },
+    { title: "MIME Types", url: "/references/mime-types", desc: "Lookup file extensions" }
+];
+
+const referencesPayload = references.map((r, i) => ({
+  id: `ref-${i}`,
+  name: r.title,
+  description: r.desc,
+  category: 'Reference',
+  url: r.url,
+  type: 'reference' as const
+}));
+
+const searchPayload = [...toolsPayload, ...guidesPayload, ...referencesPayload];
 ---
 
 <Layout 
@@ -32,7 +61,7 @@ const tools = toolsCollection.map(tool => ({
 		</p>
 		
 		<div class="w-full max-w-3xl relative">
-			<SearchIsland client:load tools={tools} />
+			<SearchIsland client:load tools={searchPayload} />
 		</div>
 	</section>
 
@@ -56,7 +85,7 @@ const tools = toolsCollection.map(tool => ({
 		<h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">Popular Tools</h2>
 		
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-			{tools.map((tool) => {
+			{toolsPayload.map((tool) => {
 				const IconComponent = Icons[tool.icon as keyof typeof Icons];
 				
 				return (

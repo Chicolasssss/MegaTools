@@ -14,7 +14,8 @@ const devTools = toolsCollection.filter(tool => devCategories.includes(tool.data
   description: t.data.description,
   category: t.data.category,
   icon: t.data.icon,
-  slug: t.id
+  slug: t.id,
+  type: 'tool' as const
 }));
 
 const references = [
@@ -22,6 +23,27 @@ const references = [
     { title: "Network Ports", url: "/references/network-ports", desc: "Database of standard ports" },
     { title: "MIME Types", url: "/references/mime-types", desc: "Lookup file extensions" }
 ];
+
+const guidesCollection = await getCollection('guides');
+const guidesPayload = guidesCollection.map(g => ({
+  id: `guide-${g.id}`,
+  name: g.data.title,
+  description: g.data.description,
+  category: g.data.category,
+  slug: g.id,
+  type: 'guide' as const
+}));
+
+const referencesPayload = references.map((r, i) => ({
+  id: `ref-${i}`,
+  name: r.title,
+  description: r.desc,
+  category: 'Reference',
+  url: r.url,
+  type: 'reference' as const
+}));
+
+const searchPayload = [...devTools, ...guidesPayload, ...referencesPayload];
 ---
 
 <Layout 
@@ -36,7 +58,7 @@ const references = [
             </p>
             
             <div class="max-w-2xl mx-auto relative mb-12">
-                <SearchIsland client:load tools={devTools} />
+                <SearchIsland client:load tools={searchPayload} />
             </div>
 
             <div class="flex flex-wrap justify-center gap-3">

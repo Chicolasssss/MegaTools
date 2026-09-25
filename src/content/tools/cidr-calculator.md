@@ -19,3 +19,6 @@ CIDR (Classless Inter-Domain Routing) is a method for allocating IP addresses an
 
 ### Why run this locally?
 Network calculations are performed instantly in your browser using bitwise operators. No IP data is sent to our servers, ensuring your internal network layouts remain strictly confidential.
+
+## Explore more Networking Tools
+If you are managing infrastructure, you might also find our [Network Ports Database](/references/network-ports) and [HTTP Status Lookup](/tools/http-status-lookup) incredibly useful for debugging firewalls and APIs.

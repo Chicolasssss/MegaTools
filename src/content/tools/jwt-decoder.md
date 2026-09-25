@@ -21,3 +21,6 @@ JWTs are composed of three parts separated by dots (`.`):
 **Yes.** Many online JWT decoders send your tokens to a backend server. If you paste a production token containing sensitive data (like user emails or internal roles) into an insecure tool, you risk a security breach.
 
 Our JWT Decoder uses standard browser APIs (`atob` and `decodeURIComponent`) to decode the Base64Url strings **locally on your device**. The token never leaves your browser.
+
+## Related Developer Workflows
+When debugging API authentication, you might also need to format the JSON responses. Check out our [JSON Formatter](/tools/json-formatter) or convert configuration keys using our [Base64 Encoder](/tools/base64-encoder).
