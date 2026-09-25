@@ -1,34 +1,98 @@
 [
   {
     "id": "password-generator",
-    "name": "Generador de Contraseñas",
-    "slug": "generador-contrasenas",
-    "description": "Genera contraseñas seguras y aleatorias con opciones personalizables.",
-    "category": "Seguridad",
+    "name": "Password Generator",
+    "slug": "password-generator",
+    "description": "Generate secure, random passwords with customizable length and characters.",
+    "category": "Security",
     "icon": "Key"
   },
   {
     "id": "utm-builder",
-    "name": "Constructor de UTM",
-    "slug": "constructor-utm",
-    "description": "Crea enlaces con parámetros UTM para tus campañas de marketing fácilmente.",
+    "name": "UTM Link Builder",
+    "slug": "utm-builder",
+    "description": "Easily create links with UTM parameters for your marketing campaigns.",
     "category": "Marketing",
     "icon": "Link"
   },
   {
     "id": "text-formatter",
-    "name": "Formateador de Texto",
-    "slug": "formateador-texto",
-    "description": "Convierte texto a mayúsculas, minúsculas o capitaliza palabras al instante.",
-    "category": "Texto",
+    "name": "Text Formatter",
+    "slug": "text-formatter",
+    "description": "Convert text to uppercase, lowercase, or capitalize words instantly.",
+    "category": "Text",
     "icon": "Type"
   },
   {
     "id": "word-counter",
-    "name": "Contador de Palabras",
-    "slug": "contador-palabras",
-    "description": "Cuenta palabras, caracteres, párrafos y tiempo de lectura de cualquier texto en tiempo real.",
-    "category": "Texto",
+    "name": "Word Counter",
+    "slug": "word-counter",
+    "description": "Count words, characters, paragraphs, and reading time of any text in real-time.",
+    "category": "Text",
     "icon": "FileText"
+  },
+  {
+    "id": "qr-generator",
+    "name": "QR Code Generator",
+    "slug": "qr-generator",
+    "description": "Generate high-quality QR codes for URLs, text, email, or phone numbers.",
+    "category": "Marketing",
+    "icon": "QrCode"
+  },
+  {
+    "id": "json-formatter",
+    "name": "JSON Formatter",
+    "slug": "json-formatter",
+    "description": "Format, validate, and beautify your JSON data instantly.",
+    "category": "Developer",
+    "icon": "Code"
+  },
+  {
+    "id": "base64-encoder",
+    "name": "Base64 Encoder/Decoder",
+    "slug": "base64-encoder",
+    "description": "Encode text to Base64 or decode Base64 strings back to normal text.",
+    "category": "Developer",
+    "icon": "FileCode"
+  },
+  {
+    "id": "uuid-generator",
+    "name": "UUID Generator",
+    "slug": "uuid-generator",
+    "description": "Generate version 4 Universally Unique Identifiers (UUIDs) instantly.",
+    "category": "Developer",
+    "icon": "Fingerprint"
+  },
+  {
+    "id": "hash-generator",
+    "name": "Hash Generator",
+    "slug": "hash-generator",
+    "description": "Compute MD5, SHA-1, SHA-256, and SHA-512 hashes from your text.",
+    "category": "Security",
+    "icon": "Shield"
+  },
+  {
+    "id": "lorem-ipsum",
+    "name": "Lorem Ipsum Generator",
+    "slug": "lorem-ipsum",
+    "description": "Generate placeholder text for your designs and mockups.",
+    "category": "Text",
+    "icon": "AlignLeft"
+  },
+  {
+    "id": "color-converter",
+    "name": "Color Converter",
+    "slug": "color-converter",
+    "description": "Convert colors between HEX, RGB, HSL, and CMYK formats.",
+    "category": "Design",
+    "icon": "Palette"
+  },
+  {
+    "id": "image-compressor",
+    "name": "Image Compressor",
+    "slug": "image-compressor",
+    "description": "Compress JPG, PNG, and WebP images without losing quality.",
+    "category": "Media",
+    "icon": "Image"
   }
 ]

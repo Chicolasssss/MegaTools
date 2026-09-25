@@ -18,7 +18,7 @@ export default function PasswordGenerator() {
     if (includeSymbols) charset += '!@#$%^&*()_+~`|}{[]:;?><,./-=';
 
     if (charset === '') {
-      setPassword('Selecciona al menos una opción');
+      setPassword('Select at least one option');
       return;
     }
 
@@ -36,7 +36,7 @@ export default function PasswordGenerator() {
   }, [length, includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
 
   const copyToClipboard = () => {
-    if (!password || password === 'Selecciona al menos una opción') return;
+    if (!password || password === 'Select at least one option') return;
     navigator.clipboard.writeText(password);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -50,13 +50,13 @@ export default function PasswordGenerator() {
           type="text"
           readOnly
           value={password}
-          className="w-full text-center text-2xl md:text-3xl font-mono p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white outline-none"
+          className="w-full text-center text-2xl md:text-3xl font-mono p-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white outline-none"
         />
         <div className="absolute right-2 top-2 flex gap-2">
           <button
             onClick={generatePassword}
-            className="p-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition text-slate-600 dark:text-slate-300"
-            title="Generar nueva"
+            className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition text-gray-600 dark:text-gray-300"
+            title="Generate new"
           >
             <RefreshCw size={20} />
           </button>
@@ -65,7 +65,7 @@ export default function PasswordGenerator() {
             className={`p-2 rounded-lg transition text-white ${
               copied ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-600 hover:bg-blue-700'
             }`}
-            title="Copiar contraseña"
+            title="Copy password"
           >
             {copied ? <Check size={20} /> : <Copy size={20} />}
           </button>
@@ -73,10 +73,10 @@ export default function PasswordGenerator() {
       </div>
 
       {/* Controls */}
-      <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+      <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
         <div className="mb-6">
           <div className="flex justify-between mb-2">
-            <label className="font-semibold text-slate-700 dark:text-slate-300">Longitud: {length}</label>
+            <label className="font-semibold text-gray-700 dark:text-gray-300">Length: {length}</label>
           </div>
           <input
             type="range"
@@ -84,7 +84,7 @@ export default function PasswordGenerator() {
             max="64"
             value={length}
             onChange={(e) => setLength(parseInt(e.target.value))}
-            className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600"
+            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-600"
           />
         </div>
 
@@ -94,36 +94,36 @@ export default function PasswordGenerator() {
               type="checkbox"
               checked={includeUppercase}
               onChange={(e) => setIncludeUppercase(e.target.checked)}
-              className="w-5 h-5 text-blue-600 bg-slate-100 border-slate-300 rounded focus:ring-blue-500 focus:ring-2 dark:bg-slate-700 dark:border-slate-600 cursor-pointer"
+              className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
             />
-            <span className="text-slate-700 dark:text-slate-300">Mayúsculas (A-Z)</span>
+            <span className="text-gray-700 dark:text-gray-300">Uppercase (A-Z)</span>
           </label>
           <label className="flex items-center space-x-3 cursor-pointer">
             <input
               type="checkbox"
               checked={includeLowercase}
               onChange={(e) => setIncludeLowercase(e.target.checked)}
-              className="w-5 h-5 text-blue-600 bg-slate-100 border-slate-300 rounded focus:ring-blue-500 focus:ring-2 dark:bg-slate-700 dark:border-slate-600 cursor-pointer"
+              className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
             />
-            <span className="text-slate-700 dark:text-slate-300">Minúsculas (a-z)</span>
+            <span className="text-gray-700 dark:text-gray-300">Lowercase (a-z)</span>
           </label>
           <label className="flex items-center space-x-3 cursor-pointer">
             <input
               type="checkbox"
               checked={includeNumbers}
               onChange={(e) => setIncludeNumbers(e.target.checked)}
-              className="w-5 h-5 text-blue-600 bg-slate-100 border-slate-300 rounded focus:ring-blue-500 focus:ring-2 dark:bg-slate-700 dark:border-slate-600 cursor-pointer"
+              className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
             />
-            <span className="text-slate-700 dark:text-slate-300">Números (0-9)</span>
+            <span className="text-gray-700 dark:text-gray-300">Numbers (0-9)</span>
           </label>
           <label className="flex items-center space-x-3 cursor-pointer">
             <input
               type="checkbox"
               checked={includeSymbols}
               onChange={(e) => setIncludeSymbols(e.target.checked)}
-              className="w-5 h-5 text-blue-600 bg-slate-100 border-slate-300 rounded focus:ring-blue-500 focus:ring-2 dark:bg-slate-700 dark:border-slate-600 cursor-pointer"
+              className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
             />
-            <span className="text-slate-700 dark:text-slate-300">Símbolos (!@#$)</span>
+            <span className="text-gray-700 dark:text-gray-300">Symbols (!@#$)</span>
           </label>
         </div>
       </div>

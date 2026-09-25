@@ -38,27 +38,27 @@ export default function TextFormatter() {
       <div className="flex flex-wrap gap-2 md:gap-4 mb-2">
         <button
           onClick={() => handleFormat('uppercase')}
-          className="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-lg text-sm font-semibold transition"
+          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg text-sm font-semibold transition"
         >
-          MAYÚSCULAS
+          UPPERCASE
         </button>
         <button
           onClick={() => handleFormat('lowercase')}
-          className="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-lg text-sm font-semibold transition"
+          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg text-sm font-semibold transition"
         >
-          minúsculas
+          lowercase
         </button>
         <button
           onClick={() => handleFormat('capitalize')}
-          className="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-lg text-sm font-semibold transition"
+          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg text-sm font-semibold transition"
         >
-          Capitalizar Palabras
+          Capitalize Words
         </button>
         <button
           onClick={() => handleFormat('sentence')}
-          className="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-lg text-sm font-semibold transition"
+          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg text-sm font-semibold transition"
         >
-          Formato oración.
+          Sentence case.
         </button>
       </div>
 
@@ -66,30 +66,30 @@ export default function TextFormatter() {
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="Escribe o pega tu texto aquí..."
-          className="w-full h-64 p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:ring-0 focus:border-blue-500 outline-none resize-y"
+          placeholder="Type or paste your text here..."
+          className="w-full h-64 p-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:ring-0 focus:border-blue-500 outline-none resize-y"
         />
-        <div className="absolute bottom-4 right-4 text-xs text-slate-400 font-mono">
-          {text.length} caracteres | {text.split(/\s+/).filter(w => w.length > 0).length} palabras
+        <div className="absolute bottom-4 right-4 text-xs text-gray-400 font-mono">
+          {text.length} characters | {text.split(/\s+/).filter(w => w.length > 0).length} words
         </div>
       </div>
 
       <div className="flex justify-between items-center">
         <button
           onClick={() => setText('')}
-          className="px-4 py-2 text-slate-500 hover:text-red-500 transition"
+          className="px-4 py-2 text-gray-500 hover:text-red-500 transition"
         >
-          Limpiar texto
+          Clear text
         </button>
         <button
           onClick={copyToClipboard}
           disabled={!text}
           className={`px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition text-white ${
-            copied ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 disabled:cursor-not-allowed'
+            copied ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed'
           }`}
         >
           {copied ? <Check size={20} /> : <Copy size={20} />}
-          {copied ? 'Copiado' : 'Copiar Texto'}
+          {copied ? 'Copied' : 'Copy Text'}
         </button>
       </div>
     </div>
