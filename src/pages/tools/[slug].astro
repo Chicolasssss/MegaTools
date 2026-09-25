@@ -23,6 +23,9 @@ import HttpStatusLookup from '../../components/tools/HttpStatusLookup';
 import YamlConverter from '../../components/tools/YamlConverter';
 import ChmodCalculator from '../../components/tools/ChmodCalculator';
 import RegexTester from '../../components/tools/RegexTester';
+import JwtDecoder from '../../components/tools/JwtDecoder';
+import SqlFormatter from '../../components/tools/SqlFormatter';
+import CronParser from '../../components/tools/CronParser';
 
 export async function getStaticPaths() {
   const toolEntries = await getCollection('tools');
@@ -62,6 +65,9 @@ const { Content } = await render(entry);
 		{entry.id === 'yaml-converter' && <YamlConverter client:load />}
 		{entry.id === 'chmod-calculator' && <ChmodCalculator client:load />}
 		{entry.id === 'regex-tester' && <RegexTester client:load />}
+		{entry.id === 'jwt-decoder' && <JwtDecoder client:load />}
+		{entry.id === 'sql-formatter' && <SqlFormatter client:load />}
+		{entry.id === 'cron-parser' && <CronParser client:load />}
 	</Fragment>
 
 	<Fragment slot="content">

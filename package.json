@@ -19,11 +19,13 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "astro": "^7.3.5",
+    "cronstrue": "^3.27.0",
     "js-yaml": "^5.4.2",
     "lucide-react": "^1.48.0",
     "qrcode.react": "^4.2.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
+    "sql-formatter": "^15.9.0",
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
